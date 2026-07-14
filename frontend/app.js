@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://testgen-backend-tlw1.onrender.com'; 
+const BACKEND_URL = 'https://testgen-2zht.onrender.com'; 
 
 let savedSolutions = {};
 
