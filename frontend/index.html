@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestGen // AI Coding Companion</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚡ TestGen</h1>
+      <p>Automated visual test-suite & complexity execution matrix</p>
+    </header>
+
+    <main class="grid-layout">
+      <section class="card inputs">
+        <h2>Problem Description</h2>
+        <input type="text" id="title" placeholder="Problem Title (e.g., Two Sum)">
+        <textarea id="description" placeholder="Problem Statement / Rules..."></textarea>
+        <textarea id="input_format" placeholder="Input Format specification..."></textarea>
+        <textarea id="output_format" placeholder="Output Format specification..."></textarea>
+        <textarea id="constraints" placeholder="Constraints (e.g., 1 <= N <= 10^5)"></textarea>
+        <button id="generate-btn">Generate Comprehensive Suite</button>
+      </section>
+
+      <section class="card outputs hidden" id="output-section">
+        <h2>Generated Test Suites</h2>
+        <div class="test-cases-grid">
+          <div class="case-box">
+            <h3>Edge Case <button onclick="refreshCase('edge_case')">🔄</button></h3>
+            <pre id="edge_case_view">Pending...</pre>
+          </div>
+          <div class="case-box">
+            <h3>Base Case <button onclick="refreshCase('base_case')">🔄</button></h3>
+            <pre id="base_case_view">Pending...</pre>
+          </div>
+          <div class="case-box">
+            <h3>Time Limit Case <button onclick="refreshCase('time_limit_case')">🔄</button></h3>
+            <pre id="time_limit_case_view">Pending...</pre>
+          </div>
+          <div class="case-box">
+            <h3>Complex Case <button onclick="refreshCase('complex_case')">🔄</button></h3>
+            <pre id="complex_case_view">Pending...</pre>
+          </div>
+          <div class="case-box">
+            <h3>Hard Case <button onclick="refreshCase('hard_case')">🔄</button></h3>
+            <pre id="hard_case_view">Pending...</pre>
+          </div>
+        </div>
+        <hr>
+        <h2>Algorithmic Complexity & Approaches</h2>
+        <div class="approaches">
+          <div>
+            <h4>Brute Force Approach</h4>
+            <p id="brute_force_view"></p>
+          </div>
+          <div>
+            <h4>Optimal Approach</h4>
+            <p id="optimal_view"></p>
+          </div>
+        </div>
+        <hr>
+        <h2>Code Implementation Reference</h2>
+        <div class="lang-selector">
+          <button class="active" onclick="switchLang('cpp')">C++</button>
+          <button onclick="switchLang('python')">Python</button>
+          <button onclick="switchLang('java')">Java</button>
+        </div>
+        <pre><code id="code_display">Select language to preview implementation...</code></pre>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
