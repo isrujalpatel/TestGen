@@ -1,76 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TestGen // AI Coding Companion</title>
+  <title>TestriX - Test Case Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+  <!-- Ambient background effects -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-grid"></div>
+
   <div class="container">
-    <header>
-      <h1>⚡ TestGen</h1>
-      <p>Automated visual test-suite & complexity execution matrix</p>
+    <!-- Hero Section -->
+    <header class="hero">
+      <h1 class="hero-title">TestriX</h1>
+      <p class="hero-subtitle">Generate intelligent competitive programming test suites Assisted With AI.</p>
+
+      <!-- Platform Slider Marquee -->
+      <div class="marquee-container">
+        <div class="marquee-track">
+          <!-- Marquee Group 1 -->
+          <div class="marquee-group">
+            <div class="platform-card">
+              <img src="sliding/leetcode.png" class="platform-logo" alt="LeetCode">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/codechef.png" class="platform-logo" alt="CodeChef">
+            </div>
+            <div class="platform-card">
+              <img src="sliding/hackerrank.png" class="platform-logo" alt="HackerRank">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/topcoder.png" class="platform-logo" alt="TopCoder">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/hackerearth.png" class="platform-logo" alt="HackerEarth">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/kattis.png" class="platform-logo" alt="Kattis">
+            </div>
+            <div class="platform-card">
+              <img src="sliding/codewars.png" class="platform-logo" alt="Codewars">
+            </div>
+          </div>
+          <!-- Marquee Group 2 (Duplicate for infinite seamless scroll) -->
+          <div class="marquee-group">
+            <div class="platform-card">
+              <img src="sliding/leetcode.png" class="platform-logo" alt="LeetCode">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/codechef.png" class="platform-logo" alt="CodeChef">
+            </div>
+            <div class="platform-card">
+              <img src="sliding/hackerrank.png" class="platform-logo" alt="HackerRank">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/topcoder.png" class="platform-logo" alt="TopCoder">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/hackerearth.png" class="platform-logo" alt="HackerEarth">
+            </div>
+            <div class="platform-card contrast-bg">
+              <img src="sliding/kattis.png" class="platform-logo" alt="Kattis">
+            </div>
+            <div class="platform-card">
+              <img src="sliding/codewars.png" class="platform-logo" alt="Codewars">
+            </div>
+          </div>
+        </div>
+        <p class="marquee-subtext">Supporting automated test suite formats for <a href="https://leetcode.com"
+            target="_blank" rel="noopener noreferrer">LeetCode</a>,
+          <a href="https://www.codechef.com" target="_blank" rel="noopener noreferrer">CodeChef</a>, <a
+            href="https://www.hackerrank.com" target="_blank" rel="noopener noreferrer">HackerRank</a>, <a
+            href="https://www.topcoder.com" target="_blank" rel="noopener noreferrer">TopCoder</a>, <a
+            href="https://www.hackerearth.com" target="_blank" rel="noopener noreferrer">HackerEarth</a>,
+          <a href="https://open.kattis.com" target="_blank" rel="noopener noreferrer">Kattis</a>, and <a
+            href="https://www.codewars.com" target="_blank" rel="noopener noreferrer">Codewars</a>.
+        </p>
     </header>
 
-    <main class="grid-layout">
-      <section class="card inputs">
-        <h2>Problem Description</h2>
-        <input type="text" id="title" placeholder="Problem Title (e.g., Two Sum)">
-        <textarea id="description" placeholder="Problem Statement / Rules..."></textarea>
-        <textarea id="input_format" placeholder="Input Format specification..."></textarea>
-        <textarea id="output_format" placeholder="Output Format specification..."></textarea>
-        <textarea id="constraints" placeholder="Constraints (e.g., 1 <= N <= 10^5)"></textarea>
-        <button id="generate-btn">Generate Comprehensive Suite</button>
+    <main>
+      <!-- Important Note Banner -->
+      <div class="note-banner">
+        <div class="note-header">
+          <svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Important Note</span>
+        </div>
+        <p class="note-content">You must enter a problem definition or problem statement. Inputting all required specifications ensures the system can generate more accurate test cases.</p>
+      </div>
+      <!-- Input Panel -->
+      <section class="card inputs-panel">
+        <h2 class="section-title">Problem Specifications</h2>
+        <div class="inputs-grid">
+          <!-- Row 1 -->
+          <div class="input-wrapper full-mobile">
+            <label class="field-label">Problem Title</label>
+            <input type="text" id="title" placeholder="e.g., Two Sum" class="premium-input">
+          </div>
+          <div class="input-wrapper full-mobile">
+            <label class="field-label">Problem Statement</label>
+            <textarea id="description" placeholder="Describe the rules, patterns, and background logic..."
+              class="premium-input"
+              oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="input-wrapper">
+            <label class="field-label">Input Format</label>
+            <textarea id="input_format"
+              placeholder="Describe how the input data is structured (e.g. dimensions, types)..." class="premium-input"
+              oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
+          </div>
+          <div class="input-wrapper">
+            <label class="field-label">Output Format</label>
+            <textarea id="output_format" placeholder="Specify expected outputs, constraints, or formats..."
+              class="premium-input"
+              oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="input-wrapper">
+            <label class="field-label">Constraints</label>
+            <textarea id="constraints" placeholder="e.g., 1 <= N <= 10^5, values fit in 32-bit signed integers..."
+              class="premium-input"
+              oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
+          </div>
+        </div>
+
+        <div class="btn-container">
+          <button id="generate-btn" class="generate-btn">Generate</button>
+        </div>
       </section>
 
-      <section class="card outputs hidden" id="output-section">
-        <h2>Generated Test Suites</h2>
+      <!-- Output Section (Dashboard) -->
+      <section class="card outputs-dashboard hidden" id="output-section">
+        <div class="dashboard-header">
+          <h2 class="section-title">Generated Test Suites</h2>
+          <div class="pulse-badge">Live Suite</div>
+        </div>
+
+        <!-- Responsive Test Case Grid -->
         <div class="test-cases-grid">
-          <div class="case-box">
-            <h3>Edge Case <button onclick="refreshCase('edge_case')">🔄</button></h3>
-            <pre id="edge_case_view">Pending...</pre>
+          <!-- Case 1: Edge Case -->
+          <div class="case-card">
+            <div class="case-header">
+              <div class="case-title-grp">
+                <span class="case-badge edge-badge">Edge</span>
+                <h3>Edge Case</h3>
+              </div>
+              <div class="case-actions">
+                <button class="copy-case-btn" onclick="copyCaseText('edge_case_view', this)" title="Copy Edge Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </button>
+                <button class="refresh-case-btn" onclick="refreshCase('edge_case')" title="Refresh Edge Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="code-wrapper">
+              <pre id="edge_case_view">Pending...</pre>
+            </div>
           </div>
-          <div class="case-box">
-            <h3>Base Case <button onclick="refreshCase('base_case')">🔄</button></h3>
-            <pre id="base_case_view">Pending...</pre>
+
+          <!-- Case 2: Base Case -->
+          <div class="case-card">
+            <div class="case-header">
+              <div class="case-title-grp">
+                <span class="case-badge base-badge">Base</span>
+                <h3>Base Case</h3>
+              </div>
+              <div class="case-actions">
+                <button class="copy-case-btn" onclick="copyCaseText('base_case_view', this)" title="Copy Base Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </button>
+                <button class="refresh-case-btn" onclick="refreshCase('base_case')" title="Refresh Base Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="code-wrapper">
+              <pre id="base_case_view">Pending...</pre>
+            </div>
           </div>
-          <div class="case-box">
-            <h3>Time Limit Case <button onclick="refreshCase('time_limit_case')">🔄</button></h3>
-            <pre id="time_limit_case_view">Pending...</pre>
+
+          <!-- Case 3: Time Limit Case -->
+          <div class="case-card">
+            <div class="case-header">
+              <div class="case-title-grp">
+                <span class="case-badge limit-badge">TLE</span>
+                <h3>Time Limit Case</h3>
+              </div>
+              <div class="case-actions">
+                <button class="copy-case-btn" onclick="copyCaseText('time_limit_case_view', this)" title="Copy Time Limit Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </button>
+                <button class="refresh-case-btn" onclick="refreshCase('time_limit_case')" title="Refresh Time Limit Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="code-wrapper">
+              <pre id="time_limit_case_view">Pending...</pre>
+            </div>
           </div>
-          <div class="case-box">
-            <h3>Complex Case <button onclick="refreshCase('complex_case')">🔄</button></h3>
-            <pre id="complex_case_view">Pending...</pre>
+
+          <!-- Case 4: Complex Case -->
+          <div class="case-card">
+            <div class="case-header">
+              <div class="case-title-grp">
+                <span class="case-badge complex-badge">Struct</span>
+                <h3>Complex Case</h3>
+              </div>
+              <div class="case-actions">
+                <button class="copy-case-btn" onclick="copyCaseText('complex_case_view', this)" title="Copy Complex Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </button>
+                <button class="refresh-case-btn" onclick="refreshCase('complex_case')" title="Refresh Complex Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="code-wrapper">
+              <pre id="complex_case_view">Pending...</pre>
+            </div>
           </div>
-          <div class="case-box">
-            <h3>Hard Case <button onclick="refreshCase('hard_case')">🔄</button></h3>
-            <pre id="hard_case_view">Pending...</pre>
+
+          <!-- Case 5: Hard Case -->
+          <div class="case-card">
+            <div class="case-header">
+              <div class="case-title-grp">
+                <span class="case-badge hard-badge">Hard</span>
+                <h3>Hard Case</h3>
+              </div>
+              <div class="case-actions">
+                <button class="copy-case-btn" onclick="copyCaseText('hard_case_view', this)" title="Copy Hard Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </button>
+                <button class="refresh-case-btn" onclick="refreshCase('hard_case')" title="Refresh Hard Case">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="code-wrapper">
+              <pre id="hard_case_view">Pending...</pre>
+            </div>
           </div>
         </div>
-        <hr>
-        <h2>Algorithmic Complexity & Approaches</h2>
-        <div class="approaches">
-          <div>
-            <h4>Brute Force Approach</h4>
-            <p id="brute_force_view"></p>
+
+        <div class="divider"></div>
+
+        <!-- Complexity Matrix Comparison Cards -->
+        <h2 class="section-title">📈 Algorithmic Complexity & Approaches</h2>
+        <div class="complexity-container">
+          <div class="complexity-comparison-card brute-force">
+            <div class="complexity-card-header">
+              <div class="complexity-icon-box brute-force-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <div>
+                <h4>Brute Force Approach</h4>
+                <div class="complexity-label">Inefficient / High Bounds</div>
+              </div>
+            </div>
+            <p id="brute_force_view" class="complexity-text">Click Generate to analyze brute force strategies...</p>
           </div>
-          <div>
-            <h4>Optimal Approach</h4>
-            <p id="optimal_view"></p>
+
+          <div class="complexity-comparison-card optimal">
+            <div class="complexity-card-header">
+              <div class="complexity-icon-box optimal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </div>
+              <div>
+                <h4>Optimal Approach</h4>
+                <div class="complexity-label optimal-badge">Highly Scalable</div>
+              </div>
+            </div>
+            <p id="optimal_view" class="complexity-text">Click Generate to view optimized algorithms...</p>
           </div>
         </div>
-        <hr>
-        <h2>Code Implementation Reference</h2>
+
+        <div class="divider"></div>
+
+        <!-- Code Editor -->
+        <h2 class="section-title">💻 Code Implementation Reference</h2>
+
+        <!-- Language selector pills -->
         <div class="lang-selector">
-          <button class="active" onclick="switchLang('cpp')">C++</button>
-          <button onclick="switchLang('python')">Python</button>
-          <button onclick="switchLang('java')">Java</button>
+          <button class="active"
+            onclick="switchLang('cpp'); document.getElementById('editor-lang-badge').innerText = 'C++';">C++</button>
+          <button
+            onclick="switchLang('python'); document.getElementById('editor-lang-badge').innerText = 'Python';">Python</button>
+          <button
+            onclick="switchLang('java'); document.getElementById('editor-lang-badge').innerText = 'Java';">Java</button>
         </div>
-        <pre><code id="code_display">Select language to preview implementation...</code></pre>
+
+        <!-- Beautiful VS Code style container -->
+        <div class="code-editor">
+          <div class="editor-header">
+            <div class="mac-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="editor-badge" id="editor-lang-badge">C++</span>
+            <button class="copy-btn" onclick="copyCode()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="copy-icon">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="editor-body">
+            <pre><code id="code_display">Select language to preview implementation...</code></pre>
+          </div>
+        </div>
       </section>
     </main>
   </div>
+
   <script src="app.js"></script>
+  <script>
+    // Toast Notification System
+    function showToast(message) {
+      const existingToast = document.querySelector('.toast-notification');
+      if (existingToast) {
+        existingToast.remove();
+      }
+      const toast = document.createElement('div');
+      toast.className = 'toast-notification';
+      toast.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>${message}</span>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 400);
+      }, 2000);
+    }
+
+    // Robust text copy helper with clipboard fallback
+    function copyTextToClipboard(text, successCallback) {
+      if (!navigator.clipboard) {
+        fallbackCopyText(text, successCallback);
+        return;
+      }
+      navigator.clipboard.writeText(text).then(successCallback).catch(() => {
+        fallbackCopyText(text, successCallback);
+      });
+    }
+
+    function fallbackCopyText(text, successCallback) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        const successful = document.execCommand('copy');
+        if (successful && successCallback) successCallback();
+      } catch (err) {
+        console.error('Fallback copy failed: ', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // Copy code script helper
+    function copyCode() {
+      const code = document.getElementById('code_display').innerText;
+      if (!code || code.includes('Select language') || code.trim() === 'Pending...') return;
+      copyTextToClipboard(code, () => {
+        const copyBtn = document.querySelector('.copy-btn');
+        const origContent = copyBtn.innerHTML;
+        copyBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" class="copy-icon" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span style="color:#FFFFFF;">Copied!</span>
+        `;
+        copyBtn.classList.add('copied');
+        showToast('Implementation code copied!');
+        setTimeout(() => {
+          copyBtn.innerHTML = origContent;
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Copy single test case helper
+    function copyCaseText(id, btn) {
+      const code = document.getElementById(id).innerText;
+      if (!code || code === 'Pending...' || code.trim() === '') return;
+      copyTextToClipboard(code, () => {
+        const origContent = btn.innerHTML;
+        btn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        `;
+        btn.classList.add('copied');
+        showToast('Test case copied!');
+        setTimeout(() => {
+          btn.innerHTML = origContent;
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    }
+
+    // Success particles event listener
+    document.getElementById('generate-btn').addEventListener('click', (e) => {
+        const btn = e.currentTarget;
+
+        // Toggle click scale class
+        btn.classList.add('scale-down');
+        btn.classList.add('pop-up-cursor');
+        setTimeout(() => btn.classList.remove('scale-down'), 100);
+        setTimeout(() => btn.classList.remove('pop-up-cursor'), 450);
+
+        const rect = btn.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        // Generate particles
+        for (let i = 0; i < 6; i++) {
+          const p = document.createElement('div');
+          p.className = 'success-particle';
+          p.style.left = `${centerX}px`;
+          p.style.top = `${centerY}px`;
+
+          // Random angular directions favoring upwards
+          const angle = (i * 2 * Math.PI) / 6 + (Math.random() * 0.4 - 0.2);
+          const distance = Math.random() * 50 + 30;
+          const tx = Math.cos(angle) * distance;
+          const ty = -Math.sin(angle) * distance - 20;
+
+          p.style.setProperty('--tx', `${tx}px`);
+          p.style.setProperty('--ty', `${ty}px`);
+          p.style.animationDelay = `${i * 0.08}s`;
+
+          document.body.appendChild(p);
+
+          // Remove after animation finishes
+          setTimeout(() => p.remove(), 700);
+        }
+      });
+  </script>
 </body>
+
 </html>
