@@ -26,19 +26,57 @@ app.post('/api/generate', async (req, res) => {
       return res.status(400).json({ error: 'Title is required' });
     }
 
-    const promptText = `Generate a comprehensive coding challenge suite for the problem: "${title}".
+    const promptText = `You are an expert competitive programming test case generator.
+
+Your task is to generate ONLY actual test cases and the associated approaches/solutions for the following problem:
+Title: "${title}"
 Description: "${description || 'No description provided.'}"
 Input Format: "${input_format || 'Standard'}"
 Output Format: "${output_format || 'Standard'}"
 Constraints: "${constraints || 'None specified.'}"
 
+The response MUST be valid JSON.
+Do NOT describe the test case.
+Do NOT explain.
+Do NOT write things like:
+- Empty array
+- Large numbers
+- Duplicate elements
+- Array of 10^4 elements
+
+Instead generate REAL input values.
+
+Rules for cases:
+- Edge Case (edgeCase): Generate minimum constraint input.
+- Base Case (baseCase): Generate a simple valid example.
+- Time Limit Case (timeLimitCase): Generate a very large valid input using actual numbers. Do NOT say "10^5 elements" or write a description. Actually generate the real values/elements.
+- Complex Case (complexCase): Generate an input containing multiple tricky situations.
+- Hard Case (hardCase): Generate the hardest possible valid input according to constraints.
+
+For every case, compute the correct expected output.
+
 You MUST return a raw JSON object matching this schema exactly, with no extra text before or after it:
 {
-  "edge_case": "Describe the edge cases here...",
-  "base_case": "Describe the base cases here...",
-  "time_limit_case": "Describe time limit test criteria...",
-  "complex_case": "Describe a complex structural case...",
-  "hard_case": "Describe a hard stress test case...",
+  "edgeCase": {
+    "input": "[actual concrete input data formatted exactly as required by the Input Format, e.g. nums = [2], target = 4]",
+    "output": "[actual expected output data formatted exactly as required by the Output Format]"
+  },
+  "baseCase": {
+    "input": "[actual concrete input data formatted exactly as required by the Input Format, e.g. nums = [2, 7, 11, 15], target = 9]",
+    "output": "[actual expected output data formatted exactly as required by the Output Format, e.g. [0, 1]]"
+  },
+  "timeLimitCase": {
+    "input": "[actual concrete input data, representing a large case using actual numbers. Generate the array/matrix elements fully]",
+    "output": "[actual expected output data]"
+  },
+  "complexCase": {
+    "input": "[actual concrete input data with multiple tricky scenarios]",
+    "output": "[actual expected output data]"
+  },
+  "hardCase": {
+    "input": "[actual concrete input data representing the hardest possible valid input according to constraints]",
+    "output": "[actual expected output data]"
+  },
   "approaches": {
     "brute_force": "Explain the brute force strategy and its complexity.",
     "optimal": "Explain the optimal approach strategy and its complexity."

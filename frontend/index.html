@@ -145,18 +145,14 @@
       <section class="card outputs-dashboard hidden" id="output-section">
         <div class="dashboard-header">
           <h2 class="section-title">Generated Test Suites</h2>
-          <div class="pulse-badge">Live Suite</div>
         </div>
 
         <!-- Responsive Test Case Grid -->
         <div class="test-cases-grid">
           <!-- Case 1: Edge Case -->
-          <div class="case-card">
+          <div class="input-wrapper">
             <div class="case-header">
-              <div class="case-title-grp">
-                <span class="case-badge edge-badge">Edge</span>
-                <h3>Edge Case</h3>
-              </div>
+              <label class="field-label">Edge Case</label>
               <div class="case-actions">
                 <button class="copy-case-btn" onclick="copyCaseText('edge_case_view', this)" title="Copy Edge Case">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -177,12 +173,9 @@
           </div>
 
           <!-- Case 2: Base Case -->
-          <div class="case-card">
+          <div class="input-wrapper">
             <div class="case-header">
-              <div class="case-title-grp">
-                <span class="case-badge base-badge">Base</span>
-                <h3>Base Case</h3>
-              </div>
+              <label class="field-label">Base Case</label>
               <div class="case-actions">
                 <button class="copy-case-btn" onclick="copyCaseText('base_case_view', this)" title="Copy Base Case">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -203,12 +196,9 @@
           </div>
 
           <!-- Case 3: Time Limit Case -->
-          <div class="case-card">
+          <div class="input-wrapper">
             <div class="case-header">
-              <div class="case-title-grp">
-                <span class="case-badge limit-badge">TLE</span>
-                <h3>Time Limit Case</h3>
-              </div>
+              <label class="field-label">Time Limit Case</label>
               <div class="case-actions">
                 <button class="copy-case-btn" onclick="copyCaseText('time_limit_case_view', this)" title="Copy Time Limit Case">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -229,12 +219,9 @@
           </div>
 
           <!-- Case 4: Complex Case -->
-          <div class="case-card">
+          <div class="input-wrapper">
             <div class="case-header">
-              <div class="case-title-grp">
-                <span class="case-badge complex-badge">Struct</span>
-                <h3>Complex Case</h3>
-              </div>
+              <label class="field-label">Complex Case</label>
               <div class="case-actions">
                 <button class="copy-case-btn" onclick="copyCaseText('complex_case_view', this)" title="Copy Complex Case">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -255,12 +242,9 @@
           </div>
 
           <!-- Case 5: Hard Case -->
-          <div class="case-card">
+          <div class="input-wrapper">
             <div class="case-header">
-              <div class="case-title-grp">
-                <span class="case-badge hard-badge">Hard</span>
-                <h3>Hard Case</h3>
-              </div>
+              <label class="field-label">Hard Case</label>
               <div class="case-actions">
                 <button class="copy-case-btn" onclick="copyCaseText('hard_case_view', this)" title="Copy Hard Case">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -286,71 +270,43 @@
         <!-- Complexity Matrix Comparison Cards -->
         <h2 class="section-title">📈 Algorithmic Complexity & Approaches</h2>
         <div class="complexity-container">
-          <div class="complexity-comparison-card brute-force">
-            <div class="complexity-card-header">
-              <div class="complexity-icon-box brute-force-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                  <path d="M12 6v6l4 2" />
-                </svg>
-              </div>
-              <div>
-                <h4>Brute Force Approach</h4>
-                <div class="complexity-label">Inefficient / High Bounds</div>
-              </div>
-            </div>
-            <p id="brute_force_view" class="complexity-text">Click Generate to analyze brute force strategies...</p>
+          <!-- Brute Force Approach -->
+          <div class="input-wrapper">
+            <label class="field-label">Brute Force Approach</label>
+            <div id="brute_force_view" class="complexity-text-box">Click Generate to analyze brute force strategies...</div>
           </div>
 
-          <div class="complexity-comparison-card optimal">
-            <div class="complexity-card-header">
-              <div class="complexity-icon-box optimal-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                </svg>
-              </div>
-              <div>
-                <h4>Optimal Approach</h4>
-                <div class="complexity-label optimal-badge">Highly Scalable</div>
-              </div>
-            </div>
-            <p id="optimal_view" class="complexity-text">Click Generate to view optimized algorithms...</p>
+          <!-- Optimal Approach -->
+          <div class="input-wrapper">
+            <label class="field-label">Optimal Approach</label>
+            <div id="optimal_view" class="complexity-text-box">Click Generate to view optimized algorithms...</div>
           </div>
         </div>
 
         <div class="divider"></div>
 
         <!-- Code Editor -->
-        <h2 class="section-title">💻 Code Implementation Reference</h2>
-
-        <!-- Language selector pills -->
-        <div class="lang-selector">
-          <button class="active"
-            onclick="switchLang('cpp'); document.getElementById('editor-lang-badge').innerText = 'C++';">C++</button>
-          <button
-            onclick="switchLang('python'); document.getElementById('editor-lang-badge').innerText = 'Python';">Python</button>
-          <button
-            onclick="switchLang('java'); document.getElementById('editor-lang-badge').innerText = 'Java';">Java</button>
-        </div>
-
-        <!-- Beautiful VS Code style container -->
-        <div class="code-editor">
-          <div class="editor-header">
-            <div class="mac-dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
+        <div class="input-wrapper">
+          <div class="case-header">
+            <label class="field-label">Code Implementation Reference</label>
+            <div class="case-actions">
+              <button class="copy-case-btn" id="copy-code-btn" onclick="copyCode()" title="Copy Code">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="copy-icon">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+              </button>
             </div>
-            <span class="editor-badge" id="editor-lang-badge">C++</span>
-            <button class="copy-btn" onclick="copyCode()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="copy-icon">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              <span>Copy</span>
-            </button>
           </div>
-          <div class="editor-body">
+
+          <!-- Language selector pills -->
+          <div class="lang-selector">
+            <button class="active" onclick="switchLang('cpp')">C++</button>
+            <button onclick="switchLang('python')">Python</button>
+            <button onclick="switchLang('java')">Java</button>
+          </div>
+
+          <div class="code-wrapper">
             <pre><code id="code_display">Select language to preview implementation...</code></pre>
           </div>
         </div>
@@ -414,11 +370,12 @@
       const code = document.getElementById('code_display').innerText;
       if (!code || code.includes('Select language') || code.trim() === 'Pending...') return;
       copyTextToClipboard(code, () => {
-        const copyBtn = document.querySelector('.copy-btn');
+        const copyBtn = document.getElementById('copy-code-btn');
         const origContent = copyBtn.innerHTML;
         copyBtn.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" class="copy-icon" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          <span style="color:#FFFFFF;">Copied!</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
         `;
         copyBtn.classList.add('copied');
         showToast('Implementation code copied!');

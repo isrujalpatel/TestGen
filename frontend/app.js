@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://testgen-2zht.onrender.com'; 
+const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5000' : 'https://testgen-2zht.onrender.com'; 
 
 let savedSolutions = {};
 
@@ -45,11 +45,19 @@ document.getElementById('generate-btn').addEventListener('click', async () => {
 function displayResults(data) {
   document.getElementById('output-section').classList.remove('hidden');
   
-  document.getElementById('edge_case_view').innerText = data.edge_case || 'N/A';
-  document.getElementById('base_case_view').innerText = data.base_case || 'N/A';
-  document.getElementById('time_limit_case_view').innerText = data.time_limit_case || 'N/A';
-  document.getElementById('complex_case_view').innerText = data.complex_case || 'N/A';
-  document.getElementById('hard_case_view').innerText = data.hard_case || 'N/A';
+  const formatCase = (c) => {
+    if (!c) return 'N/A';
+    if (typeof c === 'object') {
+      return `Input:\n${c.input || ''}\n\nOutput:\n${c.output || ''}`;
+    }
+    return c;
+  };
+
+  document.getElementById('edge_case_view').innerText = formatCase(data.edgeCase || data.edge_case);
+  document.getElementById('base_case_view').innerText = formatCase(data.baseCase || data.base_case);
+  document.getElementById('time_limit_case_view').innerText = formatCase(data.timeLimitCase || data.time_limit_case);
+  document.getElementById('complex_case_view').innerText = formatCase(data.complexCase || data.complex_case);
+  document.getElementById('hard_case_view').innerText = formatCase(data.hardCase || data.hard_case);
 
   document.getElementById('brute_force_view').innerText = data.approaches?.brute_force || 'N/A';
   document.getElementById('optimal_view').innerText = data.approaches?.optimal || 'N/A';
