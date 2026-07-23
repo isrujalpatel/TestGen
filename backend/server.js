@@ -3,17 +3,31 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import Groq from 'groq-sdk';
 import { createClient } from '@supabase/supabase-js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load env variables from backend/.env or current directory
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Supabase client
+// Supabase client (Safely initialized if keys are present)
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+let supabase = null;
+if (supabaseUrl && supabaseAnonKey) {
+  try {
+    supabase = createClient(supabaseUrl, supabaseAnonKey);
+  } catch (err) {
+    console.warn('Supabase client init warning:', err.message);
+  }
+}
 
 // Groq client
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
@@ -82,9 +96,16 @@ You MUST return a raw JSON object matching this schema exactly, with no extra te
     "optimal": "Explain the optimal approach strategy and its complexity."
   },
   "solutions": {
-    "cpp": "// Your full production-ready C++ solution code here",
-    "java": "// Your full production-ready Java solution code here",
-    "python": "// Your full production-ready Python solution code here"
+    "brute_force": {
+      "cpp": "// Your full production-ready Brute Force C++ solution code here",
+      "java": "// Your full production-ready Brute Force Java solution code here",
+      "python": "# Your full production-ready Brute Force Python solution code here"
+    },
+    "optimal": {
+      "cpp": "// Your full production-ready Optimal C++ solution code here",
+      "java": "// Your full production-ready Optimal Java solution code here",
+      "python": "# Your full production-ready Optimal Python solution code here"
+    }
   }
 }`;
 
